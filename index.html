@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 設定字體為 Inter (支援中文) -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+TC:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+TC:wght=400;700&display=swap');
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
             background-color: #f8f8fa; /* 淺灰色背景 */
@@ -19,19 +19,23 @@
 
     <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-xl overflow-hidden p-6 md:p-10 lg:p-12">
 
-        <!-- 標題區塊 -->
-        <header class="mb-8 border-b-4 border-indigo-500 pb-4 relative">
-            <h1 class="text-4xl font-extrabold text-gray-900 mb-2 leading-tight" data-i18n="guide-title">
-                <span class="text-indigo-600">🚀</span> 部署 AI 生成的教學網頁到 GitHub Pages 指南
-            </h1>
+        <!-- 標題區塊: 使用 Flexbox 確保按鈕和標題不重疊 -->
+        <header class="mb-8 border-b-4 border-indigo-500 pb-4">
+            <!-- 彈性容器：標題和按鈕 -->
+            <div class="flex justify-between items-center mb-2">
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight pr-4" data-i18n="guide-title">
+                    <span class="text-indigo-600">🚀</span> 部署 AI 生成的教學網頁到 GitHub Pages 指南
+                </h1>
+                
+                <!-- 語言切換按鈕 (不再使用 absolute 定位) -->
+                <button id="lang-toggle-btn" onclick="toggleLanguage()" class="flex-shrink-0 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 text-sm whitespace-nowrap">
+                    English
+                </button>
+            </div>
+
             <p class="text-lg text-gray-600" data-i18n="guide-subtitle">
                 本指南協助您將 AI 創建的 HTML 檔案，免費發佈為可公開存取的教學網站。
             </p>
-
-            <!-- 語言切換按鈕 -->
-            <button id="lang-toggle-btn" onclick="toggleLanguage()" class="absolute top-0 right-0 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 text-sm">
-                English
-            </button>
         </header>
 
         <!-- 內容區塊 -->
@@ -178,7 +182,7 @@
                         <p class="font-semibold text-gray-800" data-i18n="sec5-q2">Q: 網頁內容顯示了，但是圖片或 CSS 樣式跑掉了？</p>
                         <ul class="list-disc ml-6 mt-1 text-sm space-y-1">
                             <li data-i18n="sec5-q2-li1">**檢查所有檔案是否已上傳：** 確保所有圖片、CSS 和 JavaScript 檔案都已經在 GitHub 儲存庫中。</li>
-                            <li data-i18n="sec5-q2-li2">**檢查路徑是否正確：** 檢查 `index.html` 中的引用路徑是否為**相對路徑**且大小寫正確。在網路上，路徑是區分大小寫的 (例如 `IMAGES/Logo.png` 與 `images/logo.png` 與 `images/logo.png` 是不同的)。</li>
+                            <li data-i18n="sec5-q2-li2">**檢查路徑是否正確：** 檢查 `index.html` 中的引用路徑是否為**相對路徑**且大小寫正確。在網路上，路徑是區分大小寫的 (例如 `IMAGES/Logo.png` 與 `images/logo.png` 是不同的)。</li>
                         </ul>
                     </div>
                 </div>
@@ -257,13 +261,13 @@
 
                 'sec5-header': '五、 常見問題與排除 (FAQ)',
                 'sec5-q1': 'Q: 網站發佈後出現 404 錯誤，怎麼辦？',
-                'sec5-q1-li1': '<b>檢查檔案名稱：</b> 確認您的首頁檔案是否<b>確實</b>命名為 <b><code>index.html</code></b>。',
-                'sec5-q1-li2': '<b>檢查 Pages 設定：</b> 再次進入 <b>Settings → Pages</b>，確認 <b>Branch</b> 選擇的是 <code>main</code>（或您上傳檔案的分支），且資料夾是 <b><code>/ (root)</code></b>。',
+                'sec5-q1-li1': '<b>檢查檔案名稱：</b> 確認您的首頁檔案是否**確實**命名為 <b><code>index.html</code></b>。',
+                'sec5-q1-li2': '<b>檢查 Pages 設定：：</b> 再次進入 <b>Settings → Pages</b>，確認 <b>Branch</b> 選擇的是 <code>main</code>（或您上傳檔案的分支），且資料夾是 <b><code>/ (root)</code></b>。',
                 'sec5-q1-li3': '<b>等待時間：</b> 剛發佈或更新後，有時需要 5 到 10 分鐘讓全球伺服器同步。',
                 'sec5-q2': 'Q: 網頁內容顯示了，但是圖片或 CSS 樣式跑掉了？',
                 'sec5-q2-li1': '<b>檢查所有檔案是否已上傳：</b> 確保所有圖片、CSS 和 JavaScript 檔案都已經在 GitHub 儲存庫中。',
-                'sec5-q2-li2': '<b>檢查路徑是否正確：</b> 檢查 <code>index.html</code> 中的引用路徑是否為<b>相對路徑</b>且大小寫正確。在網路上，路徑是區分大小寫的 (例如 <code>IMAGES/Logo.png</code> 與 <code>images/logo.png</code> 是不同的)。',
-
+                'sec5-q2-li2': '<b>檢查路徑是否正確：：</b> 檢查 <code>index.html</code> 中的引用路徑是否為<b>相對路徑</b>且大小寫正確。在網路上，路徑是區分大小寫的 (例如 <code>IMAGES/Logo.png</code> 與 <code>images/logo.png</code> 是不同的)。',
+                
                 'footer-p1': '這是一個免費且簡單的網頁發佈方式，適合靜態教學內容。',
                 'footer-p2': '如有任何問題，請隨時詢問我或技術支援人員。',
                 'lang-toggle': 'English' // Button text
