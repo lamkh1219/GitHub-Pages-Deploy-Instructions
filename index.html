@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title-tag">AI 教學網頁部署指南 - GitHub Pages</title>
+    <!-- 載入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 設定字體為 Inter (支援中文) -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+TC:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #f8f8fa; /* 淺灰色背景 */
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-xl overflow-hidden p-6 md:p-10 lg:p-12">
+
+        <!-- 標題區塊 -->
+        <header class="mb-8 border-b-4 border-indigo-500 pb-4 relative">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-2 leading-tight" data-i18n="guide-title">
+                <span class="text-indigo-600">🚀</span> 部署 AI 生成的教學網頁到 GitHub Pages 指南
+            </h1>
+            <p class="text-lg text-gray-600" data-i18n="guide-subtitle">
+                本指南協助您將 AI 創建的 HTML 檔案，免費發佈為可公開存取的教學網站。
+            </p>
+
+            <!-- 語言切換按鈕 -->
+            <button id="lang-toggle-btn" onclick="toggleLanguage()" class="absolute top-0 right-0 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 text-sm">
+                English
+            </button>
+        </header>
+
+        <!-- 內容區塊 -->
+        <main class="space-y-12">
+
+            <!-- 區塊 I: 準備工作 -->
+            <section id="preparation" class="p-6 bg-indigo-50 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-indigo-700 mb-4 flex items-center" data-i18n="sec1-header">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.526.32.96.67 1.353 1.036z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    一、 準備工作
+                </h2>
+                <div class="space-y-6 text-gray-700">
+                    <h3 class="text-xl font-semibold text-gray-800" data-i18n="sec1-title1">1. 📂 檔案結構與命名 (非常重要)</h3>
+                    <ul class="list-disc ml-6 space-y-2">
+                        <li data-i18n="sec1-li1">**首頁檔案名稱：** 您的主要網頁檔案**必須**命名為 **<code>index.html</code>**。GitHub Pages 預設只會載入這個檔案作為網站的首頁。</li>
+                        <li data-i18n="sec1-li2">**資產檔案：** 網頁用到的所有檔案（CSS, JavaScript, 圖片, 影片等）都必須一起上傳。</li>
+                        <li data-i18n="sec1-li3">**路徑檢查：** 確保 <code>index.html</code> 中引用的所有檔案路徑都是**相對路徑**（例如：<code>&lt;link href="style.css"&gt;</code>，而不是 <code>C:\Users\...\style.css</code>）。</li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-indigo-100 border-l-4 border-indigo-500 rounded">
+                        <p class="font-medium text-indigo-700" data-i18n="sec1-example-caption">正確的檔案結構範例：</p>
+                        <pre class="mt-2 p-2 bg-indigo-200 text-sm rounded text-gray-800">
+/ (儲存庫根目錄)
+├── index.html  <span class="text-xs text-gray-600" data-i18n="sec1-example-comment1"># 網站首頁，必須！</span>
+├── style.css   <span class="text-xs text-gray-600" data-i18n="sec1-example-comment2"># 樣式檔案</span>
+└── images/
+    └── logo.png  <span class="text-xs text-gray-600" data-i18n="sec1-example-comment3"># 圖片資料夾</span>
+                        </pre>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800" data-i18n="sec1-title2">2. 🔑 建立 GitHub 帳號</h3>
+                    <p data-i18n="sec1-p2">如果您還沒有帳號，請先到 <a href="https://github.com/" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium underline">GitHub 網站</a> 註冊一個。</p>
+                </div>
+            </section>
+
+            <!-- 區塊 II: 建立與上傳檔案 -->
+            <section id="uploading">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center" data-i18n="sec2-header">
+                    <svg class="w-6 h-6 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    二、 步驟教學：建立與上傳檔案
+                </h2>
+                <div class="space-y-6 border-l-4 border-gray-200 pl-4">
+
+                    <div class="step-card p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-2" data-i18n="sec2-title1">1. 🆕 建立新的儲存庫（Repository）</h3>
+                        <ol class="list-decimal ml-6 space-y-1 text-gray-700">
+                            <li data-i18n="sec2-li1a">登入 GitHub。點擊右上角的 **`+`** → **`New repository`**（新增儲存庫）。</li>
+                            <li data-i18n="sec2-li1b">**Repository name:** 輸入一個易於識別的名稱（例如：`teaching-material-ai`）。</li>
+                            <li data-i18n="sec2-li1c">**Public/Private:** 務必選擇 **`Public`**（公開），這是免費部署的必要條件。</li>
+                            <li data-i18n="sec2-li1d">建議勾選 **`Add a README file`**。</li>
+                            <li data-i18n="sec2-li1e">點擊 **`Create repository`**（建立儲存庫）。</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-card p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-2" data-i18n="sec2-title2">2. 📤 上傳您的網頁檔案</h3>
+                        <ol class="list-decimal ml-6 space-y-1 text-gray-700">
+                            <li data-i18n="sec2-li2a">進入您剛建立的儲存庫頁面。</li>
+                            <li data-i18n="sec2-li2b">點擊 **`Add file`**（新增檔案） → **`Upload files`**（上傳檔案）。</li>
+                            <li data-i18n="sec2-li2c">將您所有的網頁檔案（**`index.html`**、CSS、圖片等）**一起**拖曳上傳。</li>
+                            <li>
+                                <span data-i18n="sec2-li2d-p1">在頁面下方輸入一個簡短的 **commit message**（提交訊息）。</span>
+                                <p class="text-xs italic mt-1 text-gray-500" data-i18n="sec2-li2d-p2">
+                                    提交訊息就像筆記，記錄您這次上傳做了什麼，例如：「Initial deployment of AI content」。
+                                </p>
+                            </li>
+                            <li data-i18n="sec2-li2e">點擊 **`Commit changes`**（提交變更）。</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 區塊 III: 啟用 GitHub Pages -->
+            <section id="pages">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center" data-i18n="sec3-header">
+                    <svg class="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9h6"></path></svg>
+                    三、 步驟教學：啟用 GitHub Pages
+                </h2>
+                <div class="space-y-6 border-l-4 border-gray-200 pl-4">
+
+                    <div class="step-card p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-2" data-i18n="sec3-title1">1. ⚙️ 進入設定頁面</h3>
+                        <p class="text-gray-700" data-i18n="sec3-p1">在您的儲存庫頁面上方，點擊 **<code>Settings</code>**（設定）標籤。</p>
+                    </div>
+
+                    <div class="step-card p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-2" data-i18n="sec3-title2">2. 🌐 找到 Pages 設定</h3>
+                        <p class="text-gray-700" data-i18n="sec3-p2">在左側選單中，找到並點擊 **<code>Pages</code>**。</p>
+                    </div>
+
+                    <div class="step-card p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-2" data-i18n="sec3-title3">3. 部署來源設定 (關鍵步驟)</h3>
+                        <ul class="list-disc ml-6 space-y-1 text-gray-700">
+                            <li data-i18n="sec3-li3a">**Source（來源）:** 確認選擇 **`Deploy from a branch`**（從分支部署）。</li>
+                            <li data-i18n="sec3-li3b">**Branch（分支）:** 選擇您的主要分支，通常是 **`main`**。</li>
+                            <li data-i18n="sec3-li3c">**資料夾:** 選擇 **`/ (root)`**（根目錄）。</li>
+                            <li data-i18n="sec3-li3d">點擊 **`Save`**（儲存）。</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card p-4 bg-green-100 border-l-4 border-green-500 rounded-lg shadow-lg transition duration-300">
+                        <h3 class="text-xl font-semibold text-green-700 mb-2" data-i18n="sec3-title4">4. 🔗 取得您的網站連結並確認狀態</h3>
+                        <ul class="list-disc ml-6 space-y-1 text-gray-700">
+                            <li data-i18n="sec3-li4a">儲存後，GitHub 會自動開始部署（畫面會顯示「**Your site is currently being built**」）。這通常需要 **1 到 5 分鐘**。</li>
+                            <li data-i18n="sec3-li4b">部署完成後，頁面會更新為 **「Your site is live at [網址]」**。</li>
+                            <li data-i18n="sec3-li4c">您的網站網址格式：<code>https://[您的GitHub帳號].github.io/[儲存庫名稱]/</code></li>
+                            <li data-i18n="sec3-li4d">**小提醒：** 如果您點擊網址後出現 404 錯誤，請耐心等待幾分鐘，或參考下方的「常見問題與排除」。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 區塊 IV: 更新網頁 -->
+            <section id="update" class="p-6 bg-yellow-50 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-yellow-700 mb-4 flex items-center" data-i18n="sec4-header">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11.356 2h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    四、 更新與修改您的網頁
+                </h2>
+                <p class="text-gray-700 mb-4" data-i18n="sec4-p1">如果您修改了本地電腦上的網頁檔案，更新線上的網站只需要重複上傳步驟：</p>
+                <ol class="list-decimal ml-6 space-y-2 text-gray-700">
+                    <li data-i18n="sec4-li1">**修改檔案:** 在您的電腦上完成 `index.html` 或其他相關檔案的編輯。</li>
+                    <li data-i18n="sec4-li2">**重新上傳:** 回到您的 GitHub 儲存庫 → **`Add file`** → **`Upload files`**。</li>
+                    <li data-i18n="sec4-li3">**覆蓋舊檔案:** 將**修改後**的檔案拖曳上傳，它會自動覆蓋舊檔案。</li>
+                    <li data-i18n="sec4-li4">**提交變更:** 輸入一個新的 commit message（例如：`Update lesson 2 images`）並點擊 **`Commit changes`**。</li>
+                    <li data-i18n="sec4-li5">GitHub Pages 會自動重新部署，您的網站會在幾分鐘內看到最新內容。</li>
+                </ol>
+            </section>
+
+            <!-- 區塊 V: 常見問題與排除 -->
+            <section id="troubleshoot" class="p-6 bg-red-50 rounded-lg shadow-md border-t-4 border-red-500">
+                <h2 class="text-2xl font-bold text-red-700 mb-4 flex items-center" data-i18n="sec5-header">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.39 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    五、 常見問題與排除 (FAQ)
+                </h2>
+                <div class="space-y-4 text-gray-700">
+                    <div class="p-3 bg-white rounded-lg border">
+                        <p class="font-semibold text-gray-800" data-i18n="sec5-q1">Q: 網站發佈後出現 404 錯誤，怎麼辦？</p>
+                        <ul class="list-disc ml-6 mt-1 text-sm space-y-1">
+                            <li data-i18n="sec5-q1-li1">**檢查檔案名稱：** 確認您的首頁檔案是否**確實**命名為 **`index.html`**。</li>
+                            <li data-i18n="sec5-q1-li2">**檢查 Pages 設定：** 再次進入 **Settings → Pages**，確認 **Branch** 選擇的是 `main`（或您上傳檔案的分支），且資料夾是 **`/ (root)`**。</li>
+                            <li data-i18n="sec5-q1-li3">**等待時間：** 剛發佈或更新後，有時需要 5 到 10 分鐘讓全球伺服器同步。</li>
+                        </ul>
+                    </div>
+                    <div class="p-3 bg-white rounded-lg border">
+                        <p class="font-semibold text-gray-800" data-i18n="sec5-q2">Q: 網頁內容顯示了，但是圖片或 CSS 樣式跑掉了？</p>
+                        <ul class="list-disc ml-6 mt-1 text-sm space-y-1">
+                            <li data-i18n="sec5-q2-li1">**檢查所有檔案是否已上傳：** 確保所有圖片、CSS 和 JavaScript 檔案都已經在 GitHub 儲存庫中。</li>
+                            <li data-i18n="sec5-q2-li2">**檢查路徑是否正確：** 檢查 `index.html` 中的引用路徑是否為**相對路徑**且大小寫正確。在網路上，路徑是區分大小寫的 (例如 `IMAGES/Logo.png` 與 `images/logo.png` 與 `images/logo.png` 是不同的)。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="mt-12 pt-6 border-t border-gray-200 text-center text-sm text-gray-500">
+            <p data-i18n="footer-p1">這是一個免費且簡單的網頁發佈方式，適合靜態教學內容。</p>
+            <p data-i18n="footer-p2">如有任何問題，請隨時詢問我或技術支援人員。</p>
+        </footer>
+
+    </div>
+
+    <!-- 語言切換邏輯 -->
+    <script>
+        // 預設語言
+        let currentLang = 'zh';
+
+        // 翻譯字典 (i18n)
+        const LANGUAGES = {
+            'zh': {
+                'title-tag': 'AI 教學網頁部署指南 - GitHub Pages',
+                'guide-title': '🚀 部署 AI 生成的教學網頁到 GitHub Pages 指南',
+                'guide-subtitle': '本指南協助您將 AI 創建的 HTML 檔案，免費發佈為可公開存取的教學網站。',
+                'sec1-header': '一、 準備工作',
+                'sec1-title1': '1. 📂 檔案結構與命名 (非常重要)',
+                'sec1-li1': '<b>首頁檔案名稱：</b> 您的主要網頁檔案<b>必須</b>命名為 <b><code>index.html</code></b>。GitHub Pages 預設只會載入這個檔案作為網站的首頁。',
+                'sec1-li2': '<b>資產檔案：</b> 網頁用到的所有檔案（CSS, JavaScript, 圖片, 影片等）都必須一起上傳。',
+                'sec1-li3': '<b>路徑檢查：</b> 確保 <code>index.html</code> 中引用的所有檔案路徑都是<b>相對路徑</b>（例如：<code>&lt;link href="style.css"&gt;</code>，而不是 <code>C:\\Users\\...\\style.css</code>）。',
+                'sec1-example-caption': '正確的檔案結構範例：',
+                'sec1-example-comment1': '# 網站首頁，必須！',
+                'sec1-example-comment2': '# 樣式檔案',
+                'sec1-example-comment3': '# 圖片資料夾',
+                'sec1-title2': '2. 🔑 建立 GitHub 帳號',
+                'sec1-p2': '如果您還沒有帳號，請先到 <a href="https://github.com/" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium underline">GitHub 網站</a> 註冊一個。',
+                
+                'sec2-header': '二、 步驟教學：建立與上傳檔案',
+                'sec2-title1': '1. 🆕 建立新的儲存庫（Repository）',
+                'sec2-li1a': '登入 GitHub。點擊右上角的 <b><code>+</code></b> → <b><code>New repository</code></b>（新增儲存庫）。',
+                'sec2-li1b': '<b>Repository name:</b> 輸入一個易於識別的名稱（例如：<code>teaching-material-ai</code>）。',
+                'sec2-li1c': '<b>Public/Private:</b> 務必選擇 <b><code>Public</code></b>（公開），這是免費部署的必要條件。',
+                'sec2-li1d': '建議勾選 <b><code>Add a README file</code></b>。',
+                'sec2-li1e': '點擊 <b><code>Create repository</code></b>（建立儲存庫）。',
+                'sec2-title2': '2. 📤 上傳您的網頁檔案',
+                'sec2-li2a': '進入您剛建立的儲存庫頁面。',
+                'sec2-li2b': '點擊 <b><code>Add file</code></b>（新增檔案） → <b><code>Upload files</code></b>（上傳檔案）。',
+                'sec2-li2c': '將您所有的網頁檔案（<b><code>index.html</code></b>、CSS、圖片等）<b>一起</b>拖曳上傳。',
+                'sec2-li2d-p1': '在頁面下方輸入一個簡短的 <b>commit message</b>（提交訊息）。',
+                'sec2-li2d-p2': '提交訊息就像筆記，記錄您這次上傳做了什麼，例如：「Initial deployment of AI content」。',
+                'sec2-li2e': '點擊 <b><code>Commit changes</code></b>（提交變更）。',
+
+                'sec3-header': '三、 步驟教學：啟用 GitHub Pages',
+                'sec3-title1': '1. ⚙️ 進入設定頁面',
+                'sec3-p1': '在您的儲存庫頁面上方，點擊 <b><code>Settings</code></b>（設定）標籤。',
+                'sec3-title2': '2. 🌐 找到 Pages 設定',
+                'sec3-p2': '在左側選單中，找到並點擊 <b><code>Pages</code></b>。',
+                'sec3-title3': '3. 部署來源設定 (關鍵步驟)',
+                'sec3-li3a': '<b>Source（來源）：</b> 確認選擇 <b><code>Deploy from a branch</code></b>（從分支部署）。',
+                'sec3-li3b': '<b>Branch（分支）：</b> 選擇您的主要分支，通常是 <b><code>main</code></b>。',
+                'sec3-li3c': '<b>資料夾：</b> 選擇 <b><code>/ (root)</code></b>（根目錄）。',
+                'sec3-li3d': '點擊 <b><code>Save</code></b>（儲存）。',
+                'sec3-title4': '4. 🔗 取得您的網站連結並確認狀態',
+                'sec3-li4a': '儲存後，GitHub 會自動開始部署（畫面會顯示「<b>Your site is currently being built</b>」）。這通常需要 <b>1 到 5 分鐘</b>。',
+                'sec3-li4b': '部署完成後，頁面會更新為 <b>「Your site is live at [網址]」</b>。',
+                'sec3-li4c': '您的網站網址格式：<code>https://[您的GitHub帳號].github.io/[儲存庫名稱]/</code>',
+                'sec3-li4d': '<b>小提醒：</b> 如果您點擊網址後出現 404 錯誤，請耐心等待幾分鐘，或參考下方的「常見問題與排除」。',
+                
+                'sec4-header': '四、 更新與修改您的網頁',
+                'sec4-p1': '如果您修改了本地電腦上的網頁檔案，更新線上的網站只需要重複上傳步驟：',
+                'sec4-li1': '<b>修改檔案:</b> 在您的電腦上完成 <code>index.html</code> 或其他相關檔案的編輯。',
+                'sec4-li2': '<b>重新上傳:</b> 回到您的 GitHub 儲存庫 → <b><code>Add file</code></b> → <b><code>Upload files</code></b>。',
+                'sec4-li3': '<b>覆蓋舊檔案:</b> 將<b>修改後</b>的檔案拖曳上傳，它會自動覆蓋舊檔案。',
+                'sec4-li4': '<b>提交變更:</b> 輸入一個新的 commit message（例如：<code>Update lesson 2 images</code>）並點擊 <b><code>Commit changes</code></b>。',
+                'sec4-li5': 'GitHub Pages 會自動重新部署，您的網站會在幾分鐘內看到最新內容。',
+
+                'sec5-header': '五、 常見問題與排除 (FAQ)',
+                'sec5-q1': 'Q: 網站發佈後出現 404 錯誤，怎麼辦？',
+                'sec5-q1-li1': '<b>檢查檔案名稱：</b> 確認您的首頁檔案是否<b>確實</b>命名為 <b><code>index.html</code></b>。',
+                'sec5-q1-li2': '<b>檢查 Pages 設定：</b> 再次進入 <b>Settings → Pages</b>，確認 <b>Branch</b> 選擇的是 <code>main</code>（或您上傳檔案的分支），且資料夾是 <b><code>/ (root)</code></b>。',
+                'sec5-q1-li3': '<b>等待時間：</b> 剛發佈或更新後，有時需要 5 到 10 分鐘讓全球伺服器同步。',
+                'sec5-q2': 'Q: 網頁內容顯示了，但是圖片或 CSS 樣式跑掉了？',
+                'sec5-q2-li1': '<b>檢查所有檔案是否已上傳：</b> 確保所有圖片、CSS 和 JavaScript 檔案都已經在 GitHub 儲存庫中。',
+                'sec5-q2-li2': '<b>檢查路徑是否正確：</b> 檢查 <code>index.html</code> 中的引用路徑是否為<b>相對路徑</b>且大小寫正確。在網路上，路徑是區分大小寫的 (例如 <code>IMAGES/Logo.png</code> 與 <code>images/logo.png</code> 是不同的)。',
+
+                'footer-p1': '這是一個免費且簡單的網頁發佈方式，適合靜態教學內容。',
+                'footer-p2': '如有任何問題，請隨時詢問我或技術支援人員。',
+                'lang-toggle': 'English' // Button text
+            },
+            'en': {
+                'title-tag': 'AI Tutorial Webpage Deployment Guide - GitHub Pages',
+                'guide-title': '🚀 Guide to Deploying AI-Generated Webpages on GitHub Pages',
+                'guide-subtitle': 'This guide helps you publish HTML files created by AI as a publicly accessible teaching website for free.',
+                'sec1-header': 'I. Preparation',
+                'sec1-title1': '1. 📂 File Structure and Naming (Crucial)',
+                'sec1-li1': '<b>Homepage File Name:</b> Your main webpage file <b>must</b> be named <b><code>index.html</code></b>. GitHub Pages defaults to loading this file as the site\'s homepage.',
+                'sec1-li2': '<b>Asset Files:</b> All files used by the webpage (CSS, JavaScript, images, videos, etc.) must be uploaded together.',
+                'sec1-li3': '<b>Path Check:</b> Ensure all file paths referenced in <code>index.html</code> are <b>relative paths</b> (e.g., <code>&lt;link href="style.css"&gt;</code>, not <code>C:\\Users\\...\\style.css</code>).',
+                'sec1-example-caption': 'Correct File Structure Example:',
+                'sec1-example-comment1': '# Site homepage, required!',
+                'sec1-example-comment2': '# Stylesheet file',
+                'sec1-example-comment3': '# Images folder',
+                'sec1-title2': '2. 🔑 Create a GitHub Account',
+                'sec1-p2': 'If you don\'t have an account yet, please register one at the <a href="https://github.com/" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium underline">GitHub website</a>.',
+
+                'sec2-header': 'II. Tutorial: Creating and Uploading Files',
+                'sec2-title1': '1. 🆕 Create a New Repository',
+                'sec2-li1a': 'Log in to GitHub. Click the <b><code>+</code></b> in the top right → <b><code>New repository</code></b>.',
+                'sec2-li1b': '<b>Repository name:</b> Enter an easy-to-identify name (e.g., <code>teaching-material-ai</code>).',
+                'sec2-li1c': '<b>Public/Private:</b> You <b>must</b> select <b><code>Public</code></b>, which is required for free deployment.',
+                'sec2-li1d': 'It is recommended to check <b><code>Add a README file</code></b>.',
+                'sec2-li1e': 'Click <b><code>Create repository</code></b>.',
+                'sec2-title2': '2. 📤 Upload Your Web Files',
+                'sec2-li2a': 'Go to the repository page you just created.',
+                'sec2-li2b': 'Click <b><code>Add file</code></b> → <b><code>Upload files</code></b>.',
+                'sec2-li2c': 'Drag and drop <b>all</b> your web files (<b><code>index.html</code></b>, CSS, images, etc.) <b>together</b> for upload.',
+                'sec2-li2d-p1': 'Enter a short <b>commit message</b> at the bottom of the page.',
+                'sec2-li2d-p2': 'The commit message is like a note recording what you uploaded this time, e.g., "Initial deployment of AI content".',
+                'sec2-li2e': 'Click <b><code>Commit changes</code></b>.',
+
+                'sec3-header': 'III. Tutorial: Enabling GitHub Pages',
+                'sec3-title1': '1. ⚙️ Access the Settings Page',
+                'sec3-p1': 'On your repository page, click the <b><code>Settings</code></b> tab at the top.',
+                'sec3-title2': '2. 🌐 Find Pages Settings',
+                'sec3-p2': 'In the left sidebar, find and click <b><code>Pages</code></b>.',
+                'sec3-title3': '3. Deployment Source Setup (Key Step)',
+                'sec3-li3a': '<b>Source:</b> Ensure <b><code>Deploy from a branch</code></b> is selected.',
+                'sec3-li3b': '<b>Branch:</b> Select your main branch, typically <b><code>main</code></b>.',
+                'sec3-li3c': '<b>Folder:</b> Select <b><code>/ (root)</code></b>.',
+                'sec3-li3d': 'Click <b><code>Save</code></b>.',
+                'sec3-title4': '4. 🔗 Get Your Website Link and Confirm Status',
+                'sec3-li4a': 'After saving, GitHub will automatically start the deployment (the screen will show "<b>Your site is currently being built</b>"). This usually takes <b>1 to 5 minutes</b>.',
+                'sec3-li4b': 'Once deployed, the page will update to "<b>Your site is live at [URL]</b>".',
+                'sec3-li4c': 'Your website URL format: <code>https://[YourGitHubAccount].github.io/[RepositoryName]/</code>',
+                'sec3-li4d': '<b>Tip:</b> If you click the URL and get a 404 error, please wait a few minutes, or refer to "V. FAQ" below.',
+
+                'sec4-header': 'IV. Updating and Modifying Your Webpage',
+                'sec4-p1': 'If you modify the web files on your local computer, updating the live website only requires repeating the upload steps:',
+                'sec4-li1': '<b>Modify Files:</b> Complete the editing of <code>index.html</code> or other relevant files on your computer.',
+                'sec4-li2': '<b>Re-upload:</b> Go back to your GitHub repository → <b><code>Add file</code></b> → <b><code>Upload files</code></b>.',
+                'sec4-li3': '<b>Overwrite Old Files:</b> Drag and drop the <b>modified</b> files for upload; they will automatically overwrite the old ones.',
+                'sec4-li4': '<b>Commit Changes:</b> Enter a new commit message (e.g., <code>Update lesson 2 images</code>) and click <b><code>Commit changes</code></b>.',
+                'sec4-li5': 'GitHub Pages will automatically redeploy, and your website will show the latest content in a few minutes.',
+
+                'sec5-header': 'V. Frequently Asked Questions (FAQ)',
+                'sec5-q1': 'Q: What should I do if the website shows a 404 error after publishing?',
+                'sec5-q1-li1': '<b>Check File Name:</b> Ensure your homepage file is <b>correctly</b> named <b><code>index.html</code></b>.',
+                'sec5-q1-li2': '<b>Check Pages Settings:</b> Go to <b>Settings → Pages</b> again, and confirm that the <b>Branch</b> selected is <code>main</code> (or the branch you uploaded to), and the folder is <b><code>/ (root)</code></b>.',
+                'sec5-q1-li3': '<b>Waiting Time:</b> Sometimes it takes 5 to 10 minutes after publishing or updating for the global servers to synchronize.',
+                'sec5-q2': 'Q: The webpage content shows up, but the images or CSS styles are missing?',
+                'sec5-q2-li1': '<b>Check All Files Uploaded:</b> Ensure all images, CSS, and JavaScript files are in the GitHub repository.',
+                'sec5-q2-li2': '<b>Check Path Correctness:</b> Check that the reference paths in <code>index.html</code> are <b>relative paths</b> and correctly cased. Paths are case-sensitive on the web (e.g., <code>IMAGES/Logo.png</code> and <code>images/logo.png</code> are different).',
+                
+                'footer-p1': 'This is a free and easy way to publish web pages, suitable for static educational content.',
+                'footer-p2': 'If you have any questions, please feel free to ask me or technical support staff.',
+                'lang-toggle': '中文' // Button text
+            }
+        };
+
+        function toggleLanguage() {
+            // 切換語言標籤
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            const newLangData = LANGUAGES[currentLang];
+            const btn = document.getElementById('lang-toggle-btn');
+
+            // 設置 HTML 文件的語言屬性
+            document.documentElement.lang = currentLang === 'zh' ? 'zh-Hant' : 'en';
+            
+            // 處理 Title 標籤
+            document.getElementById('title-tag').textContent = newLangData['title-tag'];
+
+            // 處理所有 data-i18n 元素
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (newLangData[key]) {
+                    // 使用 innerHTML 允許字典中包含的 HTML 標籤 (如 <b>, <code>)
+                    element.innerHTML = newLangData[key];
+                }
+            });
+
+            // 更新按鈕文字
+            btn.textContent = newLangData['lang-toggle'];
+        }
+        
+        // 初始化時確保按鈕顯示正確的文字
+        window.onload = () => {
+             // 初始加載時執行一次，確保初始語言是中文，按鈕顯示 English
+             const btn = document.getElementById('lang-toggle-btn');
+             if (btn) {
+                 btn.textContent = LANGUAGES['zh']['lang-toggle'];
+             }
+        };
+    </script>
+</body>
+</html>
