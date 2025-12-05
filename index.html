@@ -8,10 +8,34 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 設定字體為 Inter (支援中文) -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+TC:wght=400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+TC:wght@400;700&display=swap');
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            min-height: 100vh;
             background-color: #f8f8fa; /* 淺灰色背景 */
+        }
+        /* 圖片佔位符樣式 (現已包含公開 URL 資訊) */
+        .image-placeholder {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border: 2px dashed #34d399; /* 綠色虛線，表示已連結 */
+            background-color: #d1fae5; /* 淺綠色背景 */
+            text-align: center;
+            font-style: italic;
+            color: #065f46; /* 深綠色文字 */
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .image-path-ref {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            font-family: monospace;
+            background-color: #10b981; /* 綠色背景 */
+            color: #ffffff;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            display: inline-block;
+            word-break: break-all; /* 確保長網址在小螢幕上換行 */
         }
     </style>
 </head>
@@ -49,6 +73,14 @@
                 </h2>
                 <div class="space-y-6 text-gray-700">
                     <h3 class="text-xl font-semibold text-gray-800" data-i18n="sec1-title1">1. 📂 檔案結構與命名 (非常重要)</h3>
+                    
+                    <div class="image-placeholder">
+                        <p class="font-bold" data-i18n="sec1-image-title">圖像參考：正確的檔案結構</p>
+                        <!-- Updated Content for Image 1: Using public URL -->
+                         <img src="https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_1.png" alt="圖像參考：正確的檔案結構">
+                        <!-- End Updated Content -->
+                    </div>
+
                     <ul class="list-disc ml-6 space-y-2">
                         <li data-i18n="sec1-li1">**首頁檔案名稱：** 您的主要網頁檔案**必須**命名為 **<code>index.html</code>**。GitHub Pages 預設只會載入這個檔案作為網站的首頁。</li>
                         <li data-i18n="sec1-li2">**資產檔案：** 網頁用到的所有檔案（CSS, JavaScript, 圖片, 影片等）都必須一起上傳。</li>
@@ -80,6 +112,14 @@
 
                     <div class="step-card p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300">
                         <h3 class="text-xl font-semibold text-indigo-600 mb-2" data-i18n="sec2-title1">1. 🆕 建立新的儲存庫（Repository）</h3>
+                        
+                        <div class="image-placeholder">
+                            <p class="font-bold" data-i18n="sec2-image1-title">圖像參考：新增儲存庫頁面 (請務必勾選 README)</p>
+                            <!-- Updated Content for Image 2.1: Using public URL -->
+                            <img src="https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_2.1.png" alt="圖像參考：新增儲存庫頁面 (請務必勾選 README)">
+                            <!-- End Updated Content -->
+                        </div>
+
                         <ol class="list-decimal ml-6 space-y-1 text-gray-700">
                             <li data-i18n="sec2-li1a">登入 GitHub。點擊右上角的 **`+`** → **`New repository`**（新增儲存庫）。</li>
                             <li data-i18n="sec2-li1b">**Repository name:** 輸入一個易於識別的名稱（例如：`teaching-material-ai`）。</li>
@@ -91,6 +131,13 @@
 
                     <div class="step-card p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300">
                         <h3 class="text-xl font-semibold text-indigo-600 mb-2" data-i18n="sec2-title2">2. 📤 上傳您的網頁檔案</h3>
+
+                        <div class="image-placeholder">
+                            <p class="font-bold" data-i18n="sec2-image2-title">圖像參考：上傳檔案按鈕位置</p>
+                            <!-- Updated Content for Image 2.2: Using public URL -->
+                            <img src="https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_2.2.png" alt="圖像參考：上傳檔案按鈕位置">
+                        </div>
+
                         <ol class="list-decimal ml-6 space-y-1 text-gray-700">
                             <li data-i18n="sec2-li2a">進入您剛建立的儲存庫頁面。</li>
                             <li data-i18n="sec2-li2b">點擊 **`Add file`**（新增檔案） → **`Upload files`**（上傳檔案）。</li>
@@ -127,6 +174,14 @@
 
                     <div class="step-card p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300">
                         <h3 class="text-xl font-semibold text-indigo-600 mb-2" data-i18n="sec3-title3">3. 部署來源設定 (關鍵步驟)</h3>
+                        
+                        <div class="image-placeholder">
+                            <p class="font-bold" data-i18n="sec3-image3-title">圖像參考：Pages 部署設定 (選擇 main 與 /root)</p>
+                            <!-- Updated Content for Image 3.3: Using public URL -->
+                            <img src="https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_3.3.png" alt="圖像參考：Pages 部署設定 (選擇 main 與 /root)">
+                            <!-- End Updated Content -->
+                        </div>
+
                         <ul class="list-disc ml-6 space-y-1 text-gray-700">
                             <li data-i18n="sec3-li3a">**Source（來源）:** 確認選擇 **`Deploy from a branch`**（從分支部署）。</li>
                             <li data-i18n="sec3-li3b">**Branch（分支）:** 選擇您的主要分支，通常是 **`main`**。</li>
@@ -137,6 +192,14 @@
 
                     <div class="step-card p-4 bg-green-100 border-l-4 border-green-500 rounded-lg shadow-lg transition duration-300">
                         <h3 class="text-xl font-semibold text-green-700 mb-2" data-i18n="sec3-title4">4. 🔗 取得您的網站連結並確認狀態</h3>
+
+                        <div class="image-placeholder">
+                            <p class="font-bold" data-i18n="sec3-image4-title">圖像參考：網站已上線 (Your site is live) 頁面</p>
+                            <!-- Updated Content for Image 4: Using public URL -->
+                            <img src="https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_4.png" alt="圖像參考：網站已上線 (Your site is live) 頁面">
+                            <!-- End Updated Content -->
+                        </div>
+
                         <ul class="list-disc ml-6 space-y-1 text-gray-700">
                             <li data-i18n="sec3-li4a">儲存後，GitHub 會自動開始部署（畫面會顯示「**Your site is currently being built**」）。這通常需要 **1 到 5 分鐘**。</li>
                             <li data-i18n="sec3-li4b">部署完成後，頁面會更新為 **「Your site is live at [網址]」**。</li>
@@ -210,6 +273,10 @@
                 'guide-subtitle': '本指南協助您將 AI 創建的 HTML 檔案，免費發佈為可公開存取的教學網站。',
                 'sec1-header': '一、 準備工作',
                 'sec1-title1': '1. 📂 檔案結構與命名 (非常重要)',
+                'sec1-image-title': '圖像參考：正確的檔案結構',
+                // Updated Path
+                'img-desc-1': '此處應為顯示 <code>index.html</code> 位於儲存庫根目錄的檔案結構截圖。',
+                'img-path-1': '預期圖片路徑: https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_1.png',
                 'sec1-li1': '<b>首頁檔案名稱：</b> 您的主要網頁檔案<b>必須</b>命名為 <b><code>index.html</code></b>。GitHub Pages 預設只會載入這個檔案作為網站的首頁。',
                 'sec1-li2': '<b>資產檔案：</b> 網頁用到的所有檔案（CSS, JavaScript, 圖片, 影片等）都必須一起上傳。',
                 'sec1-li3': '<b>路徑檢查：</b> 確保 <code>index.html</code> 中引用的所有檔案路徑都是<b>相對路徑</b>（例如：<code>&lt;link href="style.css"&gt;</code>，而不是 <code>C:\\Users\\...\\style.css</code>）。',
@@ -222,12 +289,20 @@
                 
                 'sec2-header': '二、 步驟教學：建立與上傳檔案',
                 'sec2-title1': '1. 🆕 建立新的儲存庫（Repository）',
+                'sec2-image1-title': '圖像參考：新增儲存庫頁面 (請務必勾選 README)',
+                // Updated Path
+                'img-desc-2-1': '此處應為顯示 GitHub 新增儲存庫時，已勾選 README 且選 Public 的截圖。',
+                'img-path-2-1': '預期圖片路徑: https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_2.1.png',
                 'sec2-li1a': '登入 GitHub。點擊右上角的 <b><code>+</code></b> → <b><code>New repository</code></b>（新增儲存庫）。',
                 'sec2-li1b': '<b>Repository name:</b> 輸入一個易於識別的名稱（例如：<code>teaching-material-ai</code>）。',
                 'sec2-li1c': '<b>Public/Private:</b> 務必選擇 <b><code>Public</code></b>（公開），這是免費部署的必要條件。',
-                'sec2-li1d': '<b>必須勾選</b> <b><code>Add a README file</code></b>（新增 README 檔案）。', // **已更新**
+                'sec2-li1d': '<b>必須勾選</b> <b><code>Add a README file</code></b>（新增 README 檔案）。',
                 'sec2-li1e': '點擊 <b><code>Create repository</code></b>（建立儲存庫）。',
                 'sec2-title2': '2. 📤 上傳您的網頁檔案',
+                'sec2-image2-title': '圖像參考：上傳檔案按鈕位置',
+                // Updated Path
+                'img-desc-2-2': '此處應為顯示儲存庫頁面中「Add file」→「Upload files」選項的截圖。',
+                'img-path-2-2': '預期圖片路徑: https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_2.2.png',
                 'sec2-li2a': '進入您剛建立的儲存庫頁面。',
                 'sec2-li2b': '點擊 <b><code>Add file</code></b>（新增檔案） → <b><code>Upload files</code></b>（上傳檔案）。',
                 'sec2-li2c': '將您所有的網頁檔案（<b><code>index.html</code></b>、CSS、圖片等）<b>一起</b>拖曳上傳。',
@@ -241,15 +316,23 @@
                 'sec3-title2': '2. 🌐 找到 Pages 設定',
                 'sec3-p2': '在左側選單中，找到並點擊 <b><code>Pages</code></b>。',
                 'sec3-title3': '3. 部署來源設定 (關鍵步驟)',
+                'sec3-image3-title': '圖像參考：Pages 部署設定 (選擇 main 與 /root)',
+                // Updated Path
+                'img-desc-3-3': '此處應為顯示 GitHub Pages 設定頁面中，Branch 選為 `main`，資料夾選為 `/ (root)` 的截圖。',
+                'img-path-3-3': '預期圖片路徑: https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_3.3.png',
                 'sec3-li3a': '<b>Source（來源）：</b> 確認選擇 <b><code>Deploy from a branch</code></b>（從分支部署）。',
                 'sec3-li3b': '<b>Branch（分支）：</b> 選擇您的主要分支，通常是 <b><code>main</code></b>。',
                 'sec3-li3c': '<b>資料夾：</b> 選擇 <b><code>/ (root)</code></b>（根目錄）。',
                 'sec3-li3d': '點擊 <b><code>Save</code></b>（儲存）。',
                 'sec3-title4': '4. 🔗 取得您的網站連結並確認狀態',
+                'sec3-image4-title': '圖像參考：網站已上線 (Your site is live) 頁面',
+                // Updated Path
+                'img-desc-4': '此處應為顯示 GitHub Pages 顯示「Your site is live at...」的成功訊息截圖。',
+                'img-path-4': '預期圖片路徑: https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_4.png',
                 'sec3-li4a': '儲存後，GitHub 會自動開始部署（畫面會顯示「<b>Your site is currently being built</b>」）。這通常需要 <b>1 到 5 分鐘</b>。',
                 'sec3-li4b': '部署完成後，頁面會更新為 <b>「Your site is live at [網址]」</b>。',
                 'sec3-li4c': '您的網站網址格式：<code>https://[您的GitHub帳號].github.io/[儲存庫名稱]/</code>',
-                'sec3-li4d': '<b>小提醒：</b> 如果您點擊網址後出現 404 錯誤，請耐心等待幾分鐘，或參考下方的「常見問題與排除」。',
+                'sec3-li4d': '<b>小提醒：：</b> 如果您點擊網址後出現 404 錯誤，請耐心等待幾分鐘，或參考下方的「常見問題與排除」。',
                 
                 'sec4-header': '四、 更新與修改您的網頁',
                 'sec4-p1': '如果您修改了本地電腦上的網頁檔案，更新線上的網站只需要重複上傳步驟：',
@@ -263,7 +346,7 @@
                 'sec5-q1': 'Q: 網站發佈後出現 404 錯誤，怎麼辦？',
                 'sec5-q1-li1': '<b>檢查檔案名稱：</b> 確認您的首頁檔案是否**確實**命名為 <b><code>index.html</code></b>。',
                 'sec5-q1-li2': '<b>檢查 Pages 設定：：</b> 再次進入 <b>Settings → Pages</b>，確認 <b>Branch</b> 選擇的是 <code>main</code>（或您上傳檔案的分支），且資料夾是 <b><code>/ (root)</code></b>。',
-                'sec5-q1-li3': '<b>等待時間：</b> 剛發佈或更新後，有時需要 5 到 10 分鐘讓全球伺服器同步。',
+                'sec5-q1-li3': '<b>等待時間：：</b> 剛發佈或更新後，有時需要 5 到 10 分鐘讓全球伺服器同步。',
                 'sec5-q2': 'Q: 網頁內容顯示了，但是圖片或 CSS 樣式跑掉了？',
                 'sec5-q2-li1': '<b>檢查所有檔案是否已上傳：</b> 確保所有圖片、CSS 和 JavaScript 檔案都已經在 GitHub 儲存庫中。',
                 'sec5-q2-li2': '<b>檢查路徑是否正確：：</b> 檢查 <code>index.html</code> 中的引用路徑是否為<b>相對路徑</b>且大小寫正確。在網路上，路徑是區分大小寫的 (例如 <code>IMAGES/Logo.png</code> 與 <code>images/logo.png</code> 是不同的)。',
@@ -278,6 +361,10 @@
                 'guide-subtitle': 'This guide helps you publish HTML files created by AI as a publicly accessible teaching website for free.',
                 'sec1-header': 'I. Preparation',
                 'sec1-title1': '1. 📂 File Structure and Naming (Crucial)',
+                'sec1-image-title': 'Image Reference: Correct File Structure',
+                // Updated Path
+                'img-desc-1': 'This section should display a screenshot of the file structure showing <code>index.html</code> at the repository root.',
+                'img-path-1': 'Expected Image Path: https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_1.png',
                 'sec1-li1': '<b>Homepage File Name:</b> Your main webpage file <b>must</b> be named <b><code>index.html</code></b>. GitHub Pages defaults to loading this file as the site\'s homepage.',
                 'sec1-li2': '<b>Asset Files:</b> All files used by the webpage (CSS, JavaScript, images, videos, etc.) must be uploaded together.',
                 'sec1-li3': '<b>Path Check:</b> Ensure all file paths referenced in <code>index.html</code> are <b>relative paths</b> (e.g., <code>&lt;link href="style.css"&gt;</code>, not <code>C:\\Users\\...\\style.css</code>).',
@@ -290,12 +377,20 @@
 
                 'sec2-header': 'II. Tutorial: Creating and Uploading Files',
                 'sec2-title1': '1. 🆕 Create a New Repository',
+                'sec2-image1-title': 'Image Reference: New Repository Page (Make sure to check README)',
+                // Updated Path
+                'img-desc-2-1': 'This section should display a screenshot of the GitHub New Repository creation page with README checked and Public selected.',
+                'img-path-2-1': 'Expected Image Path: https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_2.1.png',
                 'sec2-li1a': 'Log in to GitHub. Click the <b><code>+</code></b> in the top right → <b><code>New repository</code></b>.',
                 'sec2-li1b': '<b>Repository name:</b> Enter an easy-to-identify name (e.g., <code>teaching-material-ai</code>).',
                 'sec2-li1c': '<b>Public/Private:</b> You <b>must</b> select <b><code>Public</code></b>, which is required for free deployment.',
-                'sec2-li1d': '<b>MUST check</b> <b><code>Add a README file</code></b>.', // **已更新**
+                'sec2-li1d': '<b>MUST check</b> <b><code>Add a README file</code></b>.', 
                 'sec2-li1e': 'Click <b><code>Create repository</code></b>.',
                 'sec2-title2': '2. 📤 Upload Your Web Files',
+                'sec2-image2-title': 'Image Reference: Upload Files Button Location',
+                // Updated Path
+                'img-desc-2-2': 'This section should display a screenshot of the "Add file" → "Upload files" option on the repository page.',
+                'img-path-2-2': 'Expected Image Path: https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_2.2.png',
                 'sec2-li2a': 'Go to the repository page you just created.',
                 'sec2-li2b': 'Click <b><code>Add file</code></b> → <b><code>Upload files</code></b>.',
                 'sec2-li2c': 'Drag and drop <b>all</b> your web files (<b><code>index.html</code></b>, CSS, images, etc.) <b>together</b> for upload.',
@@ -309,11 +404,19 @@
                 'sec3-title2': '2. 🌐 Find Pages Settings',
                 'sec3-p2': 'In the left sidebar, find and click <b><code>Pages</code></b>.',
                 'sec3-title3': '3. Deployment Source Setup (Key Step)',
+                'sec3-image3-title': 'Image Reference: Pages Deployment Settings (Select main and /root)',
+                // Updated Path
+                'img-desc-3-3': 'This section should display a screenshot of the GitHub Pages settings with Branch set to `main` and Folder set to `/ (root)`.',
+                'img-path-3-3': 'Expected Image Path: https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_3.3.png',
                 'sec3-li3a': '<b>Source:</b> Ensure <b><code>Deploy from a branch</code></b> is selected.',
                 'sec3-li3b': '<b>Branch:</b> Select your main branch, typically <b><code>main</code></b>.',
                 'sec3-li3c': '<b>Folder:</b> Select <b><code>/ (root)</code></b>.',
                 'sec3-li3d': 'Click <b><code>Save</code></b>.',
                 'sec3-title4': '4. 🔗 Get Your Website Link and Confirm Status',
+                'sec3-image4-title': 'Image Reference: Site is Live (Your site is live) Page',
+                // Updated Path
+                'img-desc-4': 'This section should display a screenshot of the GitHub Pages success message showing "Your site is live at...".',
+                'img-path-4': 'Expected Image Path: https://lamkh1219.github.io/GitHub-Pages-Deploy-Instructions/images/step_4.png',
                 'sec3-li4a': 'After saving, GitHub will automatically start the deployment (the screen will show "<b>Your site is currently being built</b>"). This usually takes <b>1 to 5 minutes</b>.',
                 'sec3-li4b': 'Once deployed, the page will update to "<b>Your site is live at [URL]</b>".',
                 'sec3-li4c': 'Your website URL format: <code>https://[YourGitHubAccount].github.io/[RepositoryName]/</code>',
